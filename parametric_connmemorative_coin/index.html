@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commemorative Coin Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f3ec;
+    --surface: #ffffff;
+    --surface-2: #fbf9f4;
+    --fg: #1d1b17;
+    --muted: #6b665c;
+    --line: #e5dfd2;
+    --accent: #9a7716;
+    --accent-soft: #f3ead2;
+    --chip: #f1ece1;
+    --code: #7a5c12;
+    --coin-edge: rgba(0,0,0,0);
+    --shadow: 0 1px 2px rgba(40,30,10,.06), 0 6px 24px rgba(40,30,10,.06);
+    --c1: #111111; --c2: #D4AF37; --c3: #F5F5F5; --c4: #B22222;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #13120f; --surface: #1c1b17; --surface-2: #211f1b; --fg: #ece8df; --muted: #a39d90;
+      --line: #322f28; --accent: #d9b648; --accent-soft: #2c2716; --chip: #2a2822; --code: #e3c56b;
+      --coin-edge: #45423a; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 24px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #13120f; --surface: #1c1b17; --surface-2: #211f1b; --fg: #ece8df; --muted: #a39d90;
+    --line: #322f28; --accent: #d9b648; --accent-soft: #2c2716; --chip: #2a2822; --code: #e3c56b;
+    --coin-edge: #45423a; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 24px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 15px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: Cinzel, Georgia, serif; letter-spacing: .02em; line-height: 1.2; }
+  code, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .86em; }
+  a { color: var(--accent); }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 1200px; margin: 0 auto; padding: 12px 16px;
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  }
+  .brand { font-family: Cinzel, serif; font-weight: 700; font-size: 16px; white-space: nowrap; margin-right: auto; }
+  .search {
+    flex: 1 1 220px; max-width: 340px; min-width: 0;
+    padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--fg); font: inherit;
+  }
+  .search:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); }
+  .seg button {
+    border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 13px; font-weight: 500;
+    padding: 7px 12px; cursor: pointer; white-space: nowrap;
+  }
+  .seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--fg); font-weight: 600; }
+
+  /* ---------- Layout ---------- */
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+  nav.toc { position: sticky; top: 76px; align-self: start; padding: 28px 0; max-height: calc(100vh - 76px); overflow: auto; }
+  nav.toc a {
+    display: flex; gap: 10px; align-items: baseline; padding: 5px 10px; border-radius: 8px;
+    color: var(--muted); text-decoration: none; font-size: 14px;
+  }
+  nav.toc a:hover { background: var(--chip); color: var(--fg); }
+  nav.toc .n { font-family: "JetBrains Mono", monospace; font-size: 12px; min-width: 1.6em; color: var(--accent); }
+  nav.toc .group { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 18px 10px 6px; }
+  main { padding: 28px 0 80px; min-width: 0; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 32px; align-items: center;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 32px; box-shadow: var(--shadow);
+  }
+  .hero h1 { font-size: clamp(26px, 4vw, 38px); margin: 0 0 10px; }
+  .hero p { color: var(--muted); margin: 0 0 12px; max-width: 60ch; }
+  .hero .coin-hero svg { width: 100%; height: auto; display: block; }
+  .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .pill { font-size: 12px; padding: 4px 10px; border-radius: 99px; background: var(--chip); color: var(--fg); }
+
+  /* ---------- Sections ---------- */
+  section.block { margin-top: 44px; }
+  section.block > header { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+  section.block h2 { font-size: 24px; margin: 0; }
+  .num {
+    font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 6px; padding: 1px 7px;
+  }
+  .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+  .lead { color: var(--muted); margin: 4px 0 18px; max-width: 72ch; }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+  .figure { padding: 20px; margin-bottom: 16px; }
+  .figure-title { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 12px; }
+
+  .grid-coins { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+  .mini { text-align: center; min-width: 0; }
+  .mini svg { width: 100%; max-width: 150px; height: auto; display: block; margin: 0 auto 6px; }
+  .mini .cap { font-size: 13px; font-weight: 600; }
+  .mini .sub { font-size: 12px; color: var(--muted); }
+
+  /* ---------- Params ---------- */
+  .params { overflow: hidden; }
+  .param {
+    display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 6px 24px;
+    padding: 14px 20px; border-top: 1px solid var(--line);
+  }
+  .param:first-child { border-top: 0; }
+  .param .label { font-weight: 600; }
+  .param .var { display: block; color: var(--code); margin-top: 2px; word-break: break-all; }
+  .param .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .chip { font-size: 11.5px; padding: 1px 8px; border-radius: 6px; background: var(--chip); color: var(--muted); white-space: nowrap; }
+  .chip b { color: var(--fg); font-weight: 600; }
+  .param .desc { color: var(--fg); min-width: 0; }
+  .param .desc p { margin: 0 0 6px; }
+  .param .desc p:last-child { margin-bottom: 0; }
+  .param .desc .tip { color: var(--muted); font-size: 13.5px; }
+  .param.hidden, section.block.hidden, .only-motifs.hidden-v { display: none; }
+  mark { background: var(--accent-soft); color: inherit; border-radius: 3px; padding: 0 2px; }
+
+  .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; border: 1px solid var(--line); margin-right: 6px; }
+
+  /* ---------- Tables / lists ---------- */
+  table.slots { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.slots th, table.slots td { text-align: left; padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+  table.slots th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border-top: 0; }
+  .table-wrap { overflow-x: auto; }
+
+  ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 32px minmax(0,1fr); gap: 12px; align-items: start; }
+  ol.steps li::before {
+    content: counter(s); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 13px;
+  }
+  .tips { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+  .tips .card { padding: 16px 18px; }
+  .tips h3 { font-family: Inter, sans-serif; font-size: 14px; margin: 0 0 6px; letter-spacing: 0; }
+  .tips p { margin: 0; color: var(--muted); font-size: 14px; }
+  details.faq { padding: 14px 18px; border-top: 1px solid var(--line); }
+  details.faq:first-child { border-top: 0; }
+  details.faq summary { cursor: pointer; font-weight: 600; }
+  details.faq p { color: var(--muted); margin: 8px 0 0; }
+
+  .no-results { display: none; padding: 40px 20px; text-align: center; color: var(--muted); }
+
+  svg text.ct { font-family: Arial, "Liberation Sans", Helvetica, sans-serif; font-weight: 700; }
+  svg .lbl { font: 600 7.5px Inter, system-ui, sans-serif; fill: var(--fg); }
+  svg .lbl-m { font: 500 6.5px Inter, system-ui, sans-serif; fill: var(--muted); }
+  svg .lead-line { stroke: var(--muted); stroke-width: .5; fill: none; }
+  svg .coin-edge { stroke: var(--coin-edge); stroke-width: .8; }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; padding: 30px 0 50px; }
+
+  @media (max-width: 900px) {
+    .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    nav.toc { display: none; }
+    .hero { grid-template-columns: minmax(0, 1fr); padding: 22px; }
+    .hero .coin-hero { max-width: 200px; margin: 0 auto; }
+  }
+  @media (max-width: 640px) {
+    .param { grid-template-columns: minmax(0, 1fr); padding: 14px 16px; }
+    .brand { width: 100%; }
+    .search { max-width: none; }
+    .figure { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">🪙 Coin &amp; Coaster Guide</div>
+    <input id="q" class="search" type="search" placeholder="Search parameters… (e.g. banner, chamfer)" aria-label="Search parameters">
+
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="toc" id="toc"></nav>
+
+  <main id="main">
+    <div class="hero">
+      <div>
+        <h1>Commemorative Coin &amp; Coaster</h1>
+        <p>A parametric generator for <strong>commemorative coins</strong> and <strong>coasters</strong> printed in up to <strong>4 colors with the Bambu Lab AMS</strong>. The design is <strong>flat, color only, with no relief</strong>: every color sits flush with the top face.</p>
+        <p>This guide explains every parameter in the customizer. Section numbers match what you see in MakerWorld.</p>
+        <div class="pill-row">
+          <span class="pill">Ø90 coaster</span><span class="pill">Ø50 / Ø45 coins</span><span class="pill">5 border layouts</span>
+          <span class="pill only-motifs">6 center motifs</span><span class="pill">Double-sided</span><span class="pill">AMS-ready 3MF</span>
+        </div>
+      </div>
+      <div class="coin-hero" id="hero-coin"></div>
+    </div>
+
+    <section class="block static" id="anatomy">
+      <header><h2>Anatomy of the coin</h2></header>
+      <p class="lead">The design is built in rings, from the outside in. The parameters change the size of each ring and what goes inside it.</p>
+      <div class="card figure">
+        <p class="figure-title">Top view</p>
+        <div id="fig-anatomy"></div>
+      </div>
+      <div class="card figure">
+        <p class="figure-title">Cross-section: the color is an inlay on the top face, flush with the surface</p>
+        <div id="fig-section"></div>
+      </div>
+    </section>
+
+    <section class="block static" id="slots">
+      <header><h2>Color slots</h2></header>
+      <p class="lead">The model is exported as 4 parts, one per AMS slot. The colors you pick in the customizer are <strong>preview only</strong>. You choose the real filaments in Bambu Studio.</p>
+      <div class="card table-wrap">
+        <table class="slots">
+          <thead><tr><th>Slot</th><th>Border</th><th class="only-motifs">Center (default)</th><th>Default</th></tr></thead>
+          <tbody>
+            <tr><td><span class="swatch" style="background:var(--c1)"></span><b>1</b></td><td>Outer rim, base, banner outline</td><td class="only-motifs">Background</td><td>Black</td></tr>
+            <tr><td><span class="swatch" style="background:var(--c2)"></span><b>2</b></td><td>Ring background</td><td class="only-motifs">Motif shapes</td><td>Gold</td></tr>
+            <tr><td><span class="swatch" style="background:var(--c3)"></span><b>3</b></td><td>Ring text, banner text</td><td class="only-motifs">Center text</td><td>White</td></tr>
+            <tr><td><span class="swatch" style="background:var(--c4)"></span><b>4</b></td><td>Banner, fillets, beads, stars, separators</td><td class="only-motifs">Accents: two-tone halves, shield border, frame, divider</td><td>Red</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block static" id="quick">
+      <header><h2>Quick start</h2></header>
+      <div class="card figure">
+        <ol class="steps">
+          <li><div>Click <b>Customize</b> on the MakerWorld model page.</div></li>
+          <li><div>In <b>Design</b>, choose the <b>size</b> and the <b>text layout</b>.</div></li>
+          <li><div>In <b>Text</b>, type your texts.</div></li>
+          <li class="only-motifs"><div>In <b>Center motif</b>, choose a motif and type the center text, for example <code>25</code> / <code>YEARS</code>.</div></li>
+          <li><div>Click <b>Generate</b>, then open the 3MF in Bambu Studio.</div></li>
+          <li><div>Assign one filament to each of the 4 parts, then slice and print with the colored face up.</div></li>
+        </ol>
+      </div>
+    </section>
+
+    <div id="sections"></div>
+    <div class="card no-results" id="no-results">No parameters match your search.</div>
+
+    <section class="block static" id="tips">
+      <header><h2>Printing tips</h2></header>
+      <div class="tips">
+        <div class="card"><h3>Colored face up</h3><p>The color is only on the top layers, so filament changes happen only there. Purge waste is much lower than with full-height multicolor.</p></div>
+        <div class="card"><h3>Layer height</h3><p>Use 0.2 mm, or 0.16 mm for small coins. Keep <b>Color depth</b> a multiple of the layer height. The default is 0.6 mm, which is 3 layers.</p></div>
+        <div class="card"><h3>Minimum detail</h3><p>Lines of 0.8 mm (2 lines with a 0.4 mm nozzle) print reliably. Text on the Ø45 coin is about 2.7 mm tall, so use bold fonts.</p></div>
+        <div class="card"><h3>Ironing</h3><p>Ironing the top surface gives a smooth, shiny coin finish.</p></div>
+        <div class="card"><h3>Double-sided</h3><p>The first layer becomes the back face, so keep the bed clean. A smooth PEI plate gives a glossy back.</p></div>
+        <div class="card only-motifs"><h3>Delicate motifs</h3><p>Guilloché and many-ray sunbursts are the most delicate motifs. On small coins, keep the counts low and check the slicer preview.</p></div>
+      </div>
+    </section>
+
+    <section class="block static" id="faq">
+      <header><h2>FAQ</h2></header>
+      <div class="card">
+        <details class="faq"><summary>Letters on the ring look unevenly spaced</summary><p>OpenSCAD can't measure exact letter widths, so the arc spacing uses Arial-like metrics. With other fonts, adjust <b>Letter spacing</b>.</p></details>
+        <details class="faq"><summary>The top and bottom texts overlap</summary><p>Shorten them, or lower <b>Text size</b> or <b>Text fill</b>. A warning also appears in the console.</p></details>
+        <details class="faq only-motifs"><summary>My center motif disappeared</summary><p>It is probably assigned to the same slot as the center background. Check the slot settings in <b>Center motif</b>.</p></details>
+        <details class="faq"><summary>Can I use fewer than 4 colors?</summary><p>Yes. Assign the same filament to two parts in Bambu Studio.</p></details>
+        <details class="faq"><summary>Can I add my own logo?</summary><p>Use the border-only version, or set the center motif to <b>None</b>. Then add your SVG or STL as a part in Bambu Studio, flush with the top face and as deep as <b>Color depth</b>.</p></details>
+        <details class="faq"><summary>A font doesn't change anything</summary><p>If a font or style isn't available, OpenSCAD silently falls back to a default font. Try another family or style.</p></details>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://makerworld.com/en/@alejandrosnz">MakerWorld</a> ·
+      <a href="https://github.com/alejandrosnz/3d-models">GitHub</a> ·
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+    </footer>
+  </main>
+</div>
+
+<script>
+/* =====================================================================
+   SVG drawing helpers (pure functions: they only return strings)
+   ===================================================================== */
+const COL = { c1: 'var(--c1)', c2: 'var(--c2)', c3: 'var(--c3)', c4: 'var(--c4)' };
+let UID = 0;
+const rad = d => d * Math.PI / 180;
+const deg = r => r * 180 / Math.PI;
+const fx = n => (Math.round(n * 100) / 100).toString();
+// Polar point: θ in degrees from the top, clockwise → SVG coordinates
+const P = (r, t) => [r * Math.sin(rad(t)), -r * Math.cos(rad(t))];
+const pts = a => a.map(p => fx(p[0]) + ',' + fx(p[1])).join(' ');
+const poly = (a, fill, extra = '') => `<polygon points="${pts(a)}" fill="${fill}" ${extra}/>`;
+const circ = (r, fill, extra = '', cx = 0, cy = 0) => `<circle cx="${fx(cx)}" cy="${fx(cy)}" r="${fx(r)}" fill="${fill}" ${extra}/>`;
+const ring = (r, w, stroke) => `<circle r="${fx(r)}" fill="none" stroke="${stroke}" stroke-width="${fx(w)}"/>`;
+
+function starPts(c, d, rot = 0, n = 5, inner = 0.45) {
+  const a = [];
+  for (let i = 0; i < 2 * n; i++) {
+    const r = i % 2 ? d / 2 * inner : d / 2;
+    const t = rot + i * 180 / n;
+    a.push([c[0] + r * Math.sin(rad(t)), c[1] - r * Math.cos(rad(t))]);
+  }
+  return a;
+}
+const starOnRing = (r, t, d, fill) => poly(starPts(P(r, t), d, t), fill);
+
+// Text along the top (reads over the top) or bottom (reads under the bottom) arc
+function textArc(str, r, fs, top, fill, ls = 0.4) {
+  const id = 'tp' + (UID++);
+  const d = top ? `M ${fx(-r)} 0 A ${fx(r)} ${fx(r)} 0 0 1 ${fx(r)} 0` : `M ${fx(-r)} 0 A ${fx(r)} ${fx(r)} 0 0 0 ${fx(r)} 0`;
+  return `<path id="${id}" d="${d}" fill="none"/><text class="ct" font-size="${fx(fs)}" fill="${fill}" letter-spacing="${ls}"><textPath href="#${id}" startOffset="50%" text-anchor="middle">${str}</textPath></text>`;
+}
+// Text around the whole circle, starting and ending at the bottom
+function textFull(str, r, fs, fill, gap) {
+  const id = 'tp' + (UID++);
+  const d = `M 0 ${fx(r)} A ${fx(r)} ${fx(r)} 0 1 1 0 ${fx(-r)} A ${fx(r)} ${fx(r)} 0 1 1 0 ${fx(r)}`;
+  const L = 2 * Math.PI * r - gap;
+  return `<path id="${id}" d="${d}" fill="none"/><text class="ct" font-size="${fx(fs)}" fill="${fill}"><textPath href="#${id}" startOffset="${fx(gap / 2)}" textLength="${fx(L)}" lengthAdjust="spacing">${str}</textPath></text>`;
+}
+const textW = (s, fs) => s.length * 0.66 * fs;           // rough bold sans width
+const spanDeg = (s, fs, r) => deg(textW(s, fs) / r);
+
+// Center label: main text + small line, fitted in a circle of radius ra
+function label(t, sub, ra, fill, cy = 0) {
+  const sm = t ? Math.min(ra * (sub ? 0.7 : 0.85), ra * 1.6 / (t.length * 0.78)) : 0;
+  const hs = sub ? Math.min(t ? sm * 0.35 : ra * 0.4, ra * 1.3 / (sub.length * 0.9)) : 0;
+  const g = t && sub ? sm * 0.3 : 0;
+  const tot = sm + g + hs;
+  let s = '';
+  if (t) s += `<text class="ct" x="0" y="${fx(cy - tot / 2 + sm)}" font-size="${fx(sm / 0.72)}" fill="${fill}" text-anchor="middle">${t}</text>`;
+  if (sub) s += `<text class="ct" x="0" y="${fx(cy + tot / 2)}" font-size="${fx(hs / 0.72)}" fill="${fill}" text-anchor="middle" letter-spacing="${fx(hs * 0.08)}">${sub}</text>`;
+  return { svg: s, barY: cy + tot / 2 - hs - g / 2, barW: sub ? textW(sub, hs / 0.72) : 0 };
+}
+
+// Pointed leaf placed on a ring at θ, local angle φ (0 = clockwise tangent, 90 = outwards)
+function leaf(r, t, phi, L, W, mirror) {
+  const tt = rad(t), u = [Math.sin(tt), Math.cos(tt)], tg = [Math.cos(tt), -Math.sin(tt)];
+  const dir = [Math.cos(rad(phi)) * tg[0] + Math.sin(rad(phi)) * u[0], Math.cos(rad(phi)) * tg[1] + Math.sin(rad(phi)) * u[1]];
+  const per = [-Math.sin(rad(phi)) * tg[0] + Math.cos(rad(phi)) * u[0], -Math.sin(rad(phi)) * tg[1] + Math.cos(rad(phi)) * u[1]];
+  const base = [r * u[0], r * u[1]];
+  const a = [];
+  for (let k = 0; k <= 180; k += 15) a.push([L * k / 180, W / 2 * Math.sin(rad(k))]);
+  for (let k = 165; k >= 15; k -= 15) a.push([L * k / 180, -W / 2 * Math.sin(rad(k))]);
+  return a.map(([lx, ly]) => {
+    const x = base[0] + lx * dir[0] + ly * per[0];
+    const y = base[1] + lx * dir[1] + ly * per[1];
+    return [mirror ? -x : x, -y];
+  });
+}
+
+const SHIELD = (() => {
+  const q = (p0, p1, p2, t) => [0, 1].map(i => (1 - t) ** 2 * p0[i] + 2 * (1 - t) * t * p1[i] + t * t * p2[i]);
+  const r = [[0.42, 0.5], [0.42, -0.05]];
+  for (let k = 1; k <= 16; k++) r.push(q([0.42, -0.05], [0.42, -0.42], [0, -0.62], k / 16));
+  const l = r.slice(0, -1).reverse().map(([x, y]) => [-x, y]);
+  return r.concat(l);
+})();
+
+/* ---------- Center motifs ---------- */
+function motif(m, RM, o) {
+  let s = '';
+  const t = o.ctext, sub = o.csub;
+  if (m === 'number') {
+    const L = label(t, sub, RM, COL.c3);
+    s += L.svg;
+    if (t && sub) s += `<rect x="${fx(-L.barW / 2)}" y="${fx(L.barY - 0.5)}" width="${fx(L.barW)}" height="1" fill="${COL.c4}"/>`;
+  } else if (m === 'laurel') {
+    const Lf = RM * 0.32, W = Lf * 0.42, tilt = 35, n = 7;
+    const ext = Lf * Math.sin(rad(tilt)) + W / 2, rb = RM - ext, tTop = 25, tBot = 170, span = tBot - tTop;
+    for (const mir of [false, true]) {
+      const a1 = P(rb, tTop), a2 = P(rb, tBot);
+      const sx = mir ? -1 : 1;
+      s += `<path d="M ${fx(sx * a1[0])} ${fx(a1[1])} A ${fx(rb)} ${fx(rb)} 0 0 ${mir ? 0 : 1} ${fx(sx * a2[0])} ${fx(a2[1])}" fill="none" stroke="${COL.c2}" stroke-width=".9"/>`;
+      for (let i = 0; i < n; i++) {
+        const th = tBot - (i + 0.5) * span / n;
+        s += poly(leaf(rb, th, 180 - tilt, Lf, W, mir), COL.c2);
+        s += poly(leaf(rb, th, 180 + tilt, Lf, W, mir), COL.c2);
+      }
+      s += poly(leaf(rb, tTop, 180, Lf, W, mir), COL.c2);
+    }
+    s += label(t, sub, rb - ext - 0.9, COL.c3).svg;
+  } else if (m === 'sunburst') {
+    const disc = RM * 0.45, r1 = disc + 0.9, N = 24, pitch = 360 / N;
+    for (let i = 0; i < N; i++) {
+      const th = (i + 0.5) * pitch, wo = pitch / 2 * 0.55, wi = deg(0.3 / r1);
+      s += poly([P(r1, th - wi), P(RM, th - wo), P(RM, th + wo), P(r1, th + wi)], (o.twoTone && i % 2) ? COL.c4 : COL.c2);
+    }
+    s += circ(disc, COL.c2);
+    s += label(t, sub, disc * 0.9, COL.c3).svg;
+  } else if (m === 'star' || m === 'compass') {
+    const N = m === 'compass' ? 8 : 5, ri = RM * (m === 'compass' ? 0.3 : 0.45);
+    for (let i = 0; i < N; i++) {
+      const a = i * 360 / N;
+      s += poly([[0, 0], P(RM, a), P(ri, a + 180 / N)], COL.c2);
+      s += poly([[0, 0], P(RM, a), P(ri, a - 180 / N)], o.twoTone ? COL.c4 : COL.c2);
+    }
+    if (m === 'star') s += label(t, '', ri * 0.9, COL.c3).svg;
+  } else if (m === 'shield') {
+    const k = RM * 0.97 / Math.hypot(0.42, 0.5);
+    s += poly(SHIELD.map(([x, y]) => [x * k, -y * k]), COL.c2);
+    const k2 = k * 0.86;
+    s += `<polygon points="${pts(SHIELD.map(([x, y]) => [x * k2, -y * k2 - k * 0.03]))}" fill="none" stroke="${COL.c4}" stroke-width=".9"/>`;
+    s += label('AB', '', 0.34 * k, COL.c3, -0.04 * k).svg;
+  } else if (m === 'guilloche') {
+    const free = RM * 0.4, h = RM - free - 0.9, r0 = free + 0.9 + h / 2, a = (h / 2 - 0.45) * 0.8, K = 12, C = 3;
+    for (let c = 0; c < C; c++) {
+      const ph = c * (360 / K) / C, p = [];
+      for (let i = 0; i < 360; i++) p.push(P(r0 + a * Math.sin(rad(K * (i + ph))), i));
+      s += `<polygon points="${pts(p)}" fill="none" stroke="${o.twoTone && c % 2 ? COL.c4 : COL.c2}" stroke-width=".9" stroke-linejoin="round"/>`;
+    }
+    s += ring(free - 0.45, 0.9, COL.c2);
+    s += label(t, sub, (free - 1.8) * 0.95, COL.c3).svg;
+  }
+  return s;
+}
+
+/* ---------- Full coin (top view) ---------- */
+function coin(opt = {}) {
+  const o = Object.assign({
+    layout: 'top_bottom', motif: 'none', fillets: true, beads: false, sep: 'star', starArc: true,
+    bShape: 'curved', bEnds: 'notch', top: 'COMMEMORATIVE', bottom: 'EDITION 2026',
+    t360: 'COMMEMORATIVE COIN 2026', banner: '2026', ctext: '25', csub: 'YEARS', twoTone: false, view: 52
+  }, opt);
+  const R = 48, rr = 44.6, rbi = 32, g = 0.9, fw = 0.9;
+  let zo = rr, s = '';
+  s += circ(R, COL.c1, 'class="coin-edge"');
+  s += circ(rr, COL.c2);
+  s += circ(rbi, COL.c1);
+  const RM = rbi - 1.1;
+  if (o.motif !== 'none') s += motif(o.motif, RM, o);
+
+  if (o.beads) {
+    const rb = rr - g - 0.65, n = Math.floor(2 * Math.PI * rb / 2.6);
+    for (let i = 0; i < n; i++) { const p = P(rb, i * 360 / n); s += circ(0.65, COL.c4, '', p[0], p[1]); }
+    zo = rr - g - 1.3;
+  }
+  const fo = zo - g, tzo = o.fillets ? fo - fw : zo, fi = rbi + g, tzi = o.fillets ? fi + fw : rbi;
+  if (o.fillets) { s += ring(fo - fw / 2, fw, COL.c4); s += ring(fi + fw / 2, fw, COL.c4); }
+  const rt = (tzo + tzi) / 2, cap = (tzo - tzi) * 0.62, fs = cap / 0.72;
+  const sepD = cap * 1.0, starD = cap * 0.8;
+  const isBanner = o.layout === 'banner' || o.layout === 'banner_top';
+  const topSpan = spanDeg(o.top, fs, rt), botSpan = spanDeg(o.bottom, fs, rt);
+
+  // banner geometry
+  let bDeg = 0, bannerSvg = '';
+  if (isBanner) {
+    const bo = tzo, bh = cap * 2.1, bi = bo - bh, bm = (bo + bi) / 2, endL = o.bEnds === 'flat' ? 0 : bh * 0.4;
+    const border = `stroke="${COL.c1}" stroke-width="2" paint-order="stroke" stroke-linejoin="round"`;
+    if (o.bShape === 'curved') {
+      const endD = deg(endL / bm), half = spanDeg(o.banner, fs, bm) / 2 + deg(2.5 / bm) + (o.bEnds === 'notch' ? endD : 0);
+      const tip = o.bEnds === 'notch' ? -endD : endD, a = [], st = 40;
+      for (let i = 0; i <= st; i++) a.push(P(bo, 180 + half - i * 2 * half / st));
+      if (o.bEnds !== 'flat') a.push(P(bm, 180 - half - tip));
+      for (let i = st; i >= 0; i--) a.push(P(bi, 180 + half - i * 2 * half / st));
+      if (o.bEnds !== 'flat') a.push(P(bm, 180 + half + tip));
+      bannerSvg += poly(a, COL.c4, border);
+      bannerSvg += textArc(o.banner, bm + cap / 2, fs, false, COL.c3);
+      bDeg = half + (o.bEnds === 'point' ? endD : 0) + deg(starD * 1.4 / rt);
+    } else {
+      const hw = textW(o.banner, fs) / 2 + 2.5 + (o.bEnds === 'notch' ? endL : 0), ext = o.bEnds === 'point' ? endL : 0;
+      const yc = Math.sqrt(Math.max(0, bo * bo - (hw + ext) ** 2)) - bh / 2, tip = o.bEnds === 'notch' ? -endL : endL;
+      const a = [[-hw, yc + bh / 2], [hw, yc + bh / 2]];
+      if (o.bEnds !== 'flat') a.push([hw + tip, yc]);
+      a.push([hw, yc - bh / 2], [-hw, yc - bh / 2]);
+      if (o.bEnds !== 'flat') a.push([-hw - tip, yc]);
+      bannerSvg += poly(a, COL.c4, border);
+      bannerSvg += `<text class="ct" x="0" y="${fx(yc + cap / 2)}" font-size="${fx(fs)}" fill="${COL.c3}" text-anchor="middle">${o.banner}</text>`;
+      bDeg = deg(Math.asin(Math.min(1, (hw + ext + 0.8) / rt))) + deg(starD * 1.4 / rt);
+    }
+  }
+
+  const starArc = (t1, t2) => {
+    const span = t2 - t1, n = Math.floor(rad(span) * rt / (starD * 1.8));
+    for (let i = 0; i < n; i++) s += starOnRing(rt, t1 + (i + 0.5) * span / n, starD, COL.c4);
+  };
+  const sepAt = t => {
+    if (o.sep === 'star') s += starOnRing(rt, t, sepD, COL.c4);
+    else if (o.sep === 'dot') { const p = P(rt, t); s += circ(sepD * 0.3, COL.c4, '', p[0], p[1]); }
+  };
+
+  if (o.layout === 'top_bottom') {
+    s += textArc(o.top, rt - cap / 2, fs, true, COL.c3);
+    s += textArc(o.bottom, rt + cap / 2, fs, false, COL.c3);
+    const t = (topSpan / 2 + 180 - botSpan / 2) / 2;
+    sepAt(t); sepAt(360 - t);
+  } else if (o.layout === 'full360') {
+    const gap = o.sep === 'none' ? cap : sepD * 2;
+    s += textFull(o.t360, rt - cap / 2, fs, COL.c3, gap);
+    sepAt(180);
+  } else if (o.layout === 'top_stars') {
+    s += textArc(o.top, rt - cap / 2, fs, true, COL.c3);
+    if (o.starArc) { const m = deg(starD * 1.2 / rt); starArc(topSpan / 2 + m, 360 - topSpan / 2 - m); }
+  } else if (o.layout === 'banner') {
+    if (o.starArc) starArc(180 + bDeg, 540 - bDeg);
+  } else if (o.layout === 'banner_top') {
+    s += textArc(o.top, rt - cap / 2, fs, true, COL.c3);
+    const t = (topSpan / 2 + 180 - bDeg) / 2;
+    sepAt(t); sepAt(360 - t);
+  }
+  s += bannerSvg;
+  const v = o.view;
+  return `<svg viewBox="${-v} ${-v} ${2 * v} ${2 * v}" xmlns="http://www.w3.org/2000/svg" role="img">${s}</svg>`;
+}
+
+/* ---------- Anatomy (labelled top view) ---------- */
+function anatomy() {
+  const inner = coin({ beads: true, layout: 'top_bottom', motif: 'none' }).replace(/^<svg[^>]*>|<\/svg>$/g, '');
+  const L = [
+    // [θ on coin, radius on coin, side, y label, title, subtitle]
+    [-40, 47, 'L', -46, 'Outer rim', 'slot 1 · rim width'],
+    [-62, 43.0, 'L', -24, 'Beads', 'optional dotted ring · slot 4'],
+    [-80, 41.4, 'L', -4, 'Outer fillet', 'thin line · slot 4'],
+    [-118, 38.5, 'L', 22, 'Ring background', 'slot 2 · ring width'],
+    [-150, 33.4, 'L', 44, 'Inner fillet', 'thin line · slot 4'],
+    [20, 38, 'R', -46, 'Ring text', 'slot 3 · auto-sized'],
+    [86, 38, 'R', -16, 'Separator', 'star / dot · slot 4'],
+    [140, 18, 'R', 18, 'Center', 'blank, or a motif'],
+    [160, 0, 'R', 44, 'Center motif area', 'motifs version only'],
+  ];
+  let s = `<g>${inner}</g>`;
+  for (const [t, r, side, ly, title, subt] of L) {
+    const p = P(r, t), lx = side === 'L' ? -64 : 64;
+    const ax = side === 'L' ? 'end' : 'start';
+    s += `<path class="lead-line" d="M ${fx(p[0])} ${fx(p[1])} L ${fx(lx + (side === 'L' ? 4 : -4))} ${ly} L ${lx} ${ly}"/>`;
+    s += circ(0.9, 'var(--fg)', '', p[0], p[1]);
+    s += `<text class="lbl" x="${lx + (side === 'L' ? -2 : 2)}" y="${ly - 1}" text-anchor="${ax}">${title}</text>`;
+    s += `<text class="lbl-m" x="${lx + (side === 'L' ? -2 : 2)}" y="${ly + 7}" text-anchor="${ax}">${subt}</text>`;
+  }
+  return `<svg viewBox="-135 -58 270 116" style="width:100%;height:auto;max-height:420px" role="img" aria-label="Labelled coin anatomy">${s}</svg>`;
+}
+
+/* ---------- Cross-section ---------- */
+function section(double) {
+  const W = 240, T = 22, d = 6.6, ch = 5, cb = double ? 5 : 4;
+  const x0 = -W / 2, x1 = W / 2;
+  const prof = [[x0 + cb, T], [x1 - cb, T], [x1, T - cb], [x1, ch], [x1 - ch, 0], [x0 + ch, 0], [x0, ch], [x0, T - cb]];
+  let s = poly(prof, COL.c1, 'class="coin-edge"');
+  const strips = (y) => {
+    let r = '';
+    const seg = [[-104, -86, COL.c2], [-86, -82, COL.c3], [-82, -76, COL.c2], [-76, -72, COL.c3], [-72, -64, COL.c2], [-64, -61, COL.c4],
+                 [61, 64, COL.c4], [64, 72, COL.c2], [72, 76, COL.c3], [76, 82, COL.c2], [82, 86, COL.c3], [86, 104, COL.c2]];
+    for (const [a, b, c] of seg) r += `<rect x="${a}" y="${y}" width="${b - a}" height="${d}" fill="${c}"/>`;
+    return r;
+  };
+  s += strips(0);
+  if (double) s += strips(T - d);
+  const lbl = (x, y, t, a = 'start') => `<text class="lbl-m" x="${x}" y="${y}" text-anchor="${a}">${t}</text>`;
+  s += `<path class="lead-line" d="M -50 ${d / 2} L -50 -14"/>` + lbl(-50, -17, 'colored inlay (slots 2–4), flush with the top', 'middle');
+  s += `<path class="lead-line" d="M 128 0 L 134 0 M 128 ${d} L 134 ${d} M 132 0 L 132 ${d}"/>` + lbl(137, d / 2 + 2, 'Color depth');
+  s += `<path class="lead-line" d="M ${x1 - ch / 2} ${ch / 2} L 130 -12"/>` + lbl(133, -12, 'Top chamfer');
+  s += `<path class="lead-line" d="M ${x1 - cb / 2} ${T - cb / 2} L 130 ${T + 8}"/>` + lbl(133, T + 10, 'Bottom chamfer');
+  s += `<path class="lead-line" d="M ${x0 - 6} 0 L ${x0 - 6} ${T} M ${x0 - 9} 0 L ${x0 - 3} 0 M ${x0 - 9} ${T} L ${x0 - 3} ${T}"/>` + lbl(x0 - 10, T / 2 + 2, 'Thickness', 'end');
+  s += lbl(0, T / 2 + 2.5, double ? 'core · slot 1' : 'base · slot 1', 'middle').replace('lbl-m', 'lbl-m" style="fill:#bbb');
+  s += lbl(0, T + 14, double ? 'Double-sided: mirrored inlay on the bottom face too' : 'Single-sided (default)', 'middle').replace('lbl-m', 'lbl');
+  return `<svg viewBox="-190 -26 400 ${T + 46}" style="width:100%;height:auto" role="img">${s}</svg>`;
+}
+
+/* ---------- Small standalone figures ---------- */
+function sizesFig() {
+  const items = [[90, 'Coaster', 'Ø90 × 2 mm'], [50, 'Coin', 'Ø50 × 3 mm'], [45, 'Coin', 'Ø45 × 3 mm']];
+  let x = 0, s = '';
+  for (const [d, a, b] of items) {
+    const r = d / 2;
+    s += `<g transform="translate(${x + r} 50)">${circ(r, COL.c1, 'class="coin-edge"')}${circ(r * 0.92, COL.c2)}${circ(r * 0.68, COL.c1)}</g>`;
+    s += `<text class="lbl" x="${x + r}" y="110" text-anchor="middle">${a}</text><text class="lbl-m" x="${x + r}" y="119" text-anchor="middle">${b}</text>`;
+    x += d + 16;
+  }
+  return `<svg viewBox="-4 0 ${x} 124" style="width:100%;max-width:520px;height:auto" role="img">${s}</svg>`;
+}
+
+function bannerFig(shape, ends) {
+  return coin({ layout: 'banner', bShape: shape, bEnds: ends, starArc: true, view: 50 });
+}
+
+function chamferFig() {
+  return section(false);
+}
+
+/* =====================================================================
+   Parameter data
+   [label, variable, default, range/options, description]
+   ===================================================================== */
+const SECTIONS = [
+  { id: 'design', n: 1, nb: 1, title: 'Design', lead: 'The most important choices: what you are making and how the text sits on the ring.',
+    figs: [
+      { title: 'Item type: preset sizes (to scale)', html: () => `<div style="display:flex;justify-content:center">${sizesFig()}</div>` },
+      { title: 'Text layout', html: () => grid([
+        ['top_bottom', 'Top and bottom text', 'Classic coin'],
+        ['full360', '360° text', 'One text all around'],
+        ['top_stars', 'Top text + stars', 'Euro-coin style'],
+        ['banner', 'Banner + stars', 'Ribbon at the bottom'],
+        ['banner_top', 'Banner + top text', 'Ribbon and arc text'],
+      ].map(([l, c, s]) => [coin({ layout: l }), c, s])) },
+    ],
+    params: [
+      ['Item type', 'size_preset', 'Coaster Ø90 × 2 mm', 'Coaster Ø90 · Coin Ø50 · Coin Ø45 · Custom',
+        '<p>Sets the diameter, thickness, outer rim width and ring width in one go. Choose <b>Custom</b> to use your own values from <a href="#custom">Custom dimensions</a>.</p>'],
+      ['Text layout', 'layout', 'Top and bottom text', '5 layouts',
+        '<p>How text and decorations are arranged on the ring. See the previews above.</p><p class="tip">Each layout only uses the texts it needs. For example, the banner layouts read <i>Banner text</i>, and <i>360°</i> reads <i>360° text</i>.</p>'],
+      ['Double-sided', 'double_sided', 'off', 'on / off',
+        '<p>Repeats the design on the bottom face. It is mirrored, so it reads correctly when you flip the coin.</p><p class="tip">Each face\'s color depth is capped at (thickness − 0.2 mm) / 2. Filament changes also happen on the first layers.</p>'],
+    ] },
+
+  { id: 'text', n: 2, nb: 2, title: 'Text', lead: 'What the ring says, and the font it uses.',
+    params: [
+      ['Top text', 'top_text', 'COMMEMORATIVE', 'text', '<p>Arc text across the top, read from the outside. Used by <i>Top and bottom</i>, <i>Top + stars</i> and <i>Banner + top text</i>.</p>'],
+      ['Bottom text', 'bottom_text', 'EDITION 2026', 'text', '<p>Arc text across the bottom. It reads upright, not upside down. Used by <i>Top and bottom</i>.</p>'],
+      ['360° text', 'text_360', 'COMMEMORATIVE COIN 2026', 'text', '<p>One continuous text around the whole ring, with a separator where it starts and ends at the bottom. Used by <i>360°</i>.</p>'],
+      ['Banner text', 'banner_text', '2026', 'text', '<p>Text inside the ribbon. The banner grows to fit it. Keep it short.</p>'],
+      ['Font family', 'font_family', 'Liberation Sans', 'Liberation Sans, Sans Narrow, Serif, Roboto, Montserrat, Oswald, Cinzel',
+        '<p>Font for all texts. Bold sans fonts are the most legible at small sizes.</p><p class="tip">If a font isn\'t available, OpenSCAD silently falls back to a default font.</p>'],
+      ['Font style', 'font_style', 'Bold', 'Regular · Bold · Black · ExtraBold', '<p>Weight of the font. Not every family has every style.</p>'],
+    ] },
+
+  { id: 'motif', n: 3, nb: null, title: 'Center motif', lead: 'A parametric design for the center: what it is, its text, and which slot each part uses.',
+    figs: [
+      { title: 'Center design', html: () => grid([
+        ['none', 'None', 'Blank center'],
+        ['number', 'Big number', 'With small line + bar'],
+        ['laurel', 'Laurel wreath', 'Leaves around the text'],
+        ['sunburst', 'Sunburst', 'Rays + center disc'],
+        ['star', 'Star', 'Two-tone points'],
+        ['compass', 'Compass rose', 'Star, 8 points, inner 0.3'],
+        ['shield', 'Shield', 'Border + initials'],
+        ['guilloche', 'Guilloché', 'Interlaced waves'],
+      ].map(([m, c, s]) => [coin({ layout: 'top_bottom', motif: m, twoTone: m === 'star' || m === 'compass' }), c, s])) },
+    ],
+    params: [
+      ['Center design', 'center_motif', 'Laurel wreath', 'None · Big number · Laurel · Sunburst · Star / compass · Shield · Guilloché',
+        '<p>The motif drawn in the center. Choose <b>None</b> to leave it blank for your own logo.</p><p class="tip">A compass rose is the <i>Star</i> motif with 8 points, inner radius about 0.3 and two-tone on.</p>'],
+      ['Main center text', 'center_text', '25', 'text', '<p>The big text: a number, a year or initials. It is sized automatically to fit the free space of each motif. 1 to 4 characters look best.</p>'],
+      ['Small line', 'center_subtext', 'YEARS', 'text (empty = none)', '<p>Optional smaller text under the main one. With <i>Big number</i>, a short divider bar is drawn between them.</p>'],
+      ['Motif size', 'center_motif_scale', '1.0', '0.5 – 1', '<p>Scales the motif inside the free center. Lower it to leave more black around the motif, or to keep it clear of a banner.</p>'],
+      ['Center text size', 'center_text_scale', '1.0', '0.3 – 1.5', '<p>Scales the center text relative to its automatic fit.</p>'],
+      ['Center frame', 'center_frame', 'off', 'on / off', '<p>Adds a thin circle around the center, in the accent slot.</p>'],
+      ['Motif slot', 'center_motif_slot', '2', '1 – 4', '<p>Slot for the motif shapes: leaves, rays, star, shield, guilloché lines.</p>'],
+      ['Accent slot', 'center_accent_slot', '4', '1 – 4', '<p>Slot for the accents: two-tone halves, shield border, frame, divider bar.</p>'],
+      ['Center text slot', 'center_text_slot', '3', '1 – 4', '<p>Slot for the center text. Set it to 1 for black text on a colored motif.</p>'],
+      ['Background slot', 'center_bg_slot', '1', '1 – 4', '<p>Fills the center background. 1 keeps it black, like the rim.</p><p class="tip">If the motif uses the same slot as the background, the motif becomes invisible. A warning appears in the console.</p>'],
+      ['Back motif', 'back_motif', 'Same as front', 'Same · None · any motif', '<p>Motif for the bottom face. Only used when <b>Double-sided</b> is on.</p>'],
+      ['Back main text', 'back_center_text', '(empty)', 'text', '<p>Main center text on the back. Leave it empty to reuse the front text.</p>'],
+      ['Back small line', 'back_center_subtext', '(empty)', 'text', '<p>Small line on the back. Leave it empty to reuse the front one.</p>'],
+    ] },
+
+  { id: 'motif-tuning', n: 4, nb: null, title: 'Motif fine tuning', lead: 'Per-motif shape controls. Each one only affects its own motif.',
+    figs: [
+      { title: 'Two-tone options', html: () => grid([
+        [coin({ layout: 'none', motif: 'sunburst', twoTone: true }), 'Sunburst', 'two-tone rays'],
+        [coin({ layout: 'none', motif: 'star', twoTone: false }), 'Star', 'single color'],
+        [coin({ layout: 'none', motif: 'guilloche', twoTone: true }), 'Guilloché', 'two-tone copies'],
+      ]) },
+    ],
+    params: [
+      ['Laurel: leaves per branch', 'laurel_leaves', '7', '3 – 15', '<p>Number of leaf pairs on each branch.</p>'],
+      ['Laurel: leaf length', 'laurel_leaf_size', '0.32', '0.15 – 0.5', '<p>Leaf length as a fraction of the center radius. Longer leaves leave less room for the text inside.</p>'],
+      ['Laurel: leaf angle', 'laurel_leaf_angle', '35°', '15 – 60°', '<p>How much the leaves open away from the stem.</p>'],
+      ['Laurel: top gap', 'laurel_top_gap', '50°', '10 – 150°', '<p>The opening between the two branch tips at the top.</p>'],
+      ['Laurel: bottom gap', 'laurel_bottom_gap', '20°', '0 – 90°', '<p>The gap between the branch bases at the bottom.</p>'],
+      ['Sunburst: rays', 'sun_rays', '24', '8 – 72', '<p>Number of rays. Many rays get very thin near the disc.</p>'],
+      ['Sunburst: disc size', 'sun_disc_size', '0.45', '0.2 – 0.8', '<p>Size of the center disc that holds the text.</p>'],
+      ['Sunburst: ray width', 'sun_ray_width', '0.55', '0.2 – 0.95', '<p>How much of the space between rays each ray fills at its outer end.</p>'],
+      ['Sunburst: two-tone', 'sun_two_tone', 'off', 'on / off', '<p>Every other ray uses the accent slot.</p>'],
+      ['Star: points', 'star_points', '5', '3 – 16', '<p>Number of star points. Use 8 for a compass rose.</p>'],
+      ['Star: inner radius', 'star_inner', '0.45', '0.15 – 0.8', '<p>Depth of the valleys between points. Lower values give sharper, thinner points.</p>'],
+      ['Star: two-tone', 'star_two_tone', 'on', 'on / off', '<p>Each point is split in two: one half in the motif slot, the other in the accent slot.</p>'],
+      ['Shield: border', 'shield_border', 'on', 'on / off', '<p>A thin inner border line in the accent slot.</p>'],
+      ['Shield: border inset', 'shield_border_inset', '1.2 mm', '0.4 – 5 mm', '<p>How far the border line sits from the shield edge.</p>'],
+      ['Guilloché: waves', 'guil_lobes', '12', '3 – 40', '<p>Number of lobes on each wavy line.</p>'],
+      ['Guilloché: copies', 'guil_copies', '3', '1 – 12', '<p>Number of phase-shifted lines per ring. More copies give a denser pattern.</p>'],
+      ['Guilloché: rings', 'guil_rings', '1', '1 – 5', '<p>Number of concentric rings. Each ring is thinner, so start with 1 or 2.</p>'],
+      ['Guilloché: amplitude', 'guil_amplitude', '0.8', '0.1 – 1', '<p>Wave depth as a fraction of the ring height.</p>'],
+      ['Guilloché: free center', 'guil_center_size', '0.4', '0.15 – 0.8', '<p>Size of the empty center that holds the text.</p>'],
+      ['Guilloché: two-tone', 'guil_two_tone', 'off', 'on / off', '<p>Alternates the copies between the motif and accent slots.</p>'],
+      ['Guilloché: inner circle', 'guil_inner_circle', 'on', 'on / off', '<p>A thin circle around the free center.</p>'],
+      ['Center margin', 'center_margin', '1.0 mm', '0 – 5 mm', '<p>Gap between the center motif and the border ring.</p>'],
+    ] },
+
+  { id: 'colors', n: 5, nb: 3, title: 'Colors (preview only)', lead: 'These colors only change the on-screen preview. You assign the real filaments in Bambu Studio.',
+    params: [
+      ['Slot 1', 'color_1', '<span class="swatch" style="background:#111111"></span>#111111', 'hex', '<p>Outer rim, base and banner outline (and the center background by default).</p>'],
+      ['Slot 2', 'color_2', '<span class="swatch" style="background:#D4AF37"></span>#D4AF37', 'hex', '<p>Ring background (and the center motif by default).</p>'],
+      ['Slot 3', 'color_3', '<span class="swatch" style="background:#F5F5F5"></span>#F5F5F5', 'hex', '<p>Ring text, banner text (and the center text by default).</p>'],
+      ['Slot 4', 'color_4', '<span class="swatch" style="background:#B22222"></span>#B22222', 'hex', '<p>Banner, fillets, beads, stars, separators (and the center accents by default).</p>'],
+    ] },
+
+  { id: 'decorations', n: 6, nb: 4, title: 'Decorations', lead: 'Classic coin details on the ring. They all use slot 4.',
+    figs: [
+      { title: 'Examples', html: () => grid([
+        [coin({ layout: 'none', fillets: true, starArc: false }), 'Fillets', 'inner + outer lines'],
+        [coin({ layout: 'none', fillets: false, beads: true }), 'Beads', 'dotted ring'],
+        [coin({ layout: 'top_bottom', fillets: false, sep: 'dot' }), 'Separators', 'dot style'],
+        [coin({ layout: 'top_stars', fillets: false }), 'Star arc', 'fills the free arc'],
+      ]) },
+    ],
+    params: [
+      ['Fillets', 'show_fillets', 'on', 'on / off', '<p>Thin lines along the inner and outer edges of the ring. They frame the text and make it look like a coin.</p>'],
+      ['Beads', 'show_beads', 'off', 'on / off', '<p>A ring of small dots just inside the outer rim. It takes a little room from the text.</p>'],
+      ['Separators', 'separator_style', 'Star', 'Star · Dot · None', '<p>The symbol placed between texts. It goes on both sides in <i>Top and bottom</i> and <i>Banner + top text</i>, and at the start/end point in <i>360°</i>.</p>'],
+      ['Star arc', 'show_star_arc', 'on', 'on / off', '<p>Fills the free part of the ring with stars. Used by <i>Top + stars</i> and <i>Banner + stars</i>.</p>'],
+      ['Number of stars', 'star_count', '0 (auto)', '0 – 40', '<p>With 0, the arc gets as many stars as fit. Any other value forces that exact count.</p>'],
+    ] },
+
+  { id: 'banner', n: 7, nb: 5, title: 'Banner', lead: 'The ribbon used by the two banner layouts. Its fill is slot 4 and its text is slot 3.',
+    figs: [
+      { title: 'Shape × ends', html: () => grid([
+        [bannerFig('curved', 'notch'), 'Curved', 'swallowtail'],
+        [bannerFig('curved', 'point'), 'Curved', 'pointed'],
+        [bannerFig('curved', 'flat'), 'Curved', 'flat'],
+        [bannerFig('straight', 'notch'), 'Straight', 'swallowtail'],
+      ]) },
+    ],
+    params: [
+      ['Banner shape', 'banner_shape', 'Curved', 'Curved · Straight', '<p><b>Curved</b> follows the ring. <b>Straight</b> is a flat ribbon placed as low as fits inside the coin.</p>'],
+      ['Banner ends', 'banner_ends', 'Swallowtail', 'Swallowtail · Pointed · Flat', '<p>The shape of both ends of the ribbon.</p>'],
+      ['Banner height', 'banner_height', '0 (auto)', '0 – 30 mm', '<p>How tall the ribbon is. With 0, it is about twice the text height.</p>'],
+      ['Side padding', 'banner_padding', '2.5 mm', '0 – 15 mm', '<p>Space between the text and each end of the ribbon.</p>'],
+      ['Banner text scale', 'banner_text_scale', '1.0', '0.5 – 2', '<p>Banner text size relative to the ring text.</p>'],
+      ['Banner outline', 'banner_border', '0.8 mm', '0 – 3 mm', '<p>A slot-1 (black) border around the ribbon that separates it from the ring. Set it to 0 to remove it.</p>'],
+    ] },
+
+  { id: 'text-tuning', n: 8, nb: 6, title: 'Text fine tuning', lead: 'Size and spacing of the ring text.',
+    params: [
+      ['Text size', 'text_size', '0 (auto)', '0 – 20 mm', '<p>Height of the ring letters. With 0, the text fills the usable ring width, scaled by <i>Text fill</i>.</p>'],
+      ['Text fill', 'text_fill', '0.62', '0.3 – 0.9', '<p>In automatic mode, how much of the usable ring width the letters take. Lower it to fit longer texts.</p>'],
+      ['Letter spacing', 'letter_spacing', '1.05', '0.7 – 2', '<p>Space between letters, for all texts. Adjust it when using a narrower or wider font.</p>'],
+      ['360° repetitions', 'repeat_360', '1', '1 – 4', '<p>Repeats the 360° text around the ring, with separators in between.</p>'],
+      ['360° stretch to fill', 'fit_360', 'on', 'on / off', '<p>Spreads the letters so the 360° text covers the whole circle. When off, the text keeps its natural spacing and is only compressed if it doesn\'t fit.</p>'],
+    ] },
+
+  { id: 'custom', n: 9, nb: 7, title: 'Custom dimensions', lead: 'Only used when Item type is Custom.',
+    params: [
+      ['Diameter', 'custom_diameter', '60 mm', '20 – 200 mm', '<p>Total outer diameter.</p>'],
+      ['Thickness', 'custom_thickness', '2.5 mm', '1 – 10 mm', '<p>Total height of the piece.</p>'],
+      ['Outer rim width', 'custom_rim_width', '2 mm', '0 – 15 mm', '<p>Width of the black outer rim. The top chamfer can\'t be wider than this.</p>'],
+      ['Ring width', 'custom_band_width', '9 mm', '2 – 40 mm', '<p>Width of the colored ring that holds the text and decorations.</p><p class="tip">Center diameter = diameter − 2 × (rim + ring).</p>'],
+    ] },
+
+  { id: 'details', n: 10, nb: 8, title: 'Fine details', lead: 'Sizes and spacing of the small elements.',
+    params: [
+      ['Fillet width', 'fillet_width', '0.8 mm', '0.4 – 3 mm', '<p>Width of the fillet lines. It is also used for the laurel stems, frame, divider, shield border and guilloché lines. Keep it a multiple of your line width.</p>'],
+      ['Detail gap', 'detail_gap', '0.8 mm', '0.2 – 3 mm', '<p>Space between fillets, beads and the ring edges.</p>'],
+      ['Bead diameter', 'bead_diameter', '1.2 mm', '0.6 – 4 mm', '<p>Size of each bead.</p>'],
+      ['Bead pitch', 'bead_pitch', '2.0', '1.3 – 4', '<p>Distance between beads, as a multiple of their diameter.</p>'],
+      ['Separator size', 'separator_scale', '0.9', '0.3 – 2', '<p>Separator size relative to the text height.</p>'],
+      ['Arc star size', 'star_scale', '0.75', '0.3 – 2', '<p>Star arc size relative to the text height.</p>'],
+      ['Arc star pitch', 'star_pitch', '1.8', '1.1 – 5', '<p>Distance between arc stars, as a multiple of their size. Only used when the star count is automatic.</p>'],
+    ] },
+
+  { id: 'edge', n: 11, nb: 9, title: 'Edge', lead: 'Soften the sharp edges of the disc. The chamfers only cut into the black rim, never into the colors.',
+    figs: [{ title: 'Chamfers on the cross-section', html: () => chamferFig() }],
+    params: [
+      ['Top chamfer', 'top_chamfer', '0.6 mm', '0 – 3 mm', '<p>45° bevel on the top edge. It is limited to the outer rim width, and set to 0 for a sharp edge.</p>'],
+      ['Bottom chamfer', 'bottom_chamfer', '0.4 mm', '0 – 3 mm', '<p>45° bevel on the bed-side edge. It also hides elephant foot. In double-sided mode it is also limited to the rim width.</p>'],
+    ] },
+
+  { id: 'printing', n: 12, nb: 10, title: 'Printing / AMS', lead: 'Inlay depth, export mode and resolution.',
+    figs: [{ title: 'Double-sided cross-section', html: () => section(true) }],
+    params: [
+      ['Color depth', 'inlay_depth', '0.6 mm', '0.2 – 2 mm', '<p>How deep the colored inlay goes into the face. Use a multiple of your layer height: 0.6 mm is 3 layers at 0.2 mm.</p><p class="tip">It is capped by the thickness, leaving at least 0.2 mm of solid base.</p>'],
+      ['Export', 'export_part', 'All (multicolor)', 'All · Color 1 only … Color 4 only', '<p><b>All</b> generates the multicolor model, with one part per slot. <b>Color N only</b> exports a single color, for separate STLs.</p>'],
+      ['Circle resolution', 'circle_fn', '180', '64 – 360', '<p>How smooth circles and arcs are. Higher values generate more slowly.</p>'],
+      ['Letter resolution', 'text_fn', '32', '8 – 96', '<p>How smooth letter curves are.</p>'],
+    ] },
+];
+
+function grid(items) {
+  return `<div class="grid-coins">${items.map(([svg, c, s]) => `<div class="mini">${svg}<div class="cap">${c}</div><div class="sub">${s}</div></div>`).join('')}</div>`;
+}
+
+/* =====================================================================
+   Rendering + interaction
+   ===================================================================== */
+let version = 'motifs';
+
+function render() {
+  const host = document.getElementById('sections');
+  host.innerHTML = SECTIONS.map(sec => `
+    <section class="block param-block" id="${sec.id}" data-motifs-only="${sec.nb === null}">
+      <header><span class="num" data-n="${sec.n}" data-nb="${sec.nb ?? ''}">${sec.n}</span><h2>${sec.title}</h2>${sec.nb === null ? '<span class="badge">Motifs version</span>' : ''}</header>
+      <p class="lead">${sec.lead}</p>
+      ${(sec.figs || []).map(f => `<div class="card figure"><p class="figure-title">${f.title}</p>${f.html()}</div>`).join('')}
+      <div class="card params">
+        ${sec.params.map(([label, v, def, range, desc]) => `
+          <div class="param" data-search="${(label + ' ' + v + ' ' + desc.replace(/<[^>]+>/g, '')).toLowerCase().replace(/"/g, '')}">
+            <div><div class="label">${label}</div><code class="var">${v}</code>
+              <div class="meta"><span class="chip">default <b>${def}</b></span><span class="chip">${range}</span></div></div>
+            <div class="desc">${desc}</div>
+          </div>`).join('')}
+      </div>
+    </section>`).join('');
+
+  const toc = document.getElementById('toc');
+  toc.innerHTML = `<div class="group">Basics</div>
+    <a href="#anatomy"><span class="n">·</span>Anatomy</a>
+    <a href="#slots"><span class="n">·</span>Color slots</a>
+    <a href="#quick"><span class="n">·</span>Quick start</a>
+    <div class="group">Parameters</div>
+    ${SECTIONS.map(s => `<a href="#${s.id}" data-motifs-only="${s.nb === null}"><span class="n" data-n="${s.n}" data-nb="${s.nb ?? ''}">${s.n}</span>${s.title}</a>`).join('')}
+    <div class="group">More</div>
+    <a href="#tips"><span class="n">·</span>Printing tips</a>
+    <a href="#faq"><span class="n">·</span>FAQ</a>`;
+
+  document.getElementById('hero-coin').innerHTML = coin({ layout: 'top_bottom', motif: 'laurel' });
+  document.getElementById('fig-anatomy').innerHTML = anatomy();
+  document.getElementById('fig-section').innerHTML = section(false);
+}
+
+function applyVersion() {
+  document.querySelectorAll('[data-n]').forEach(el => { el.textContent = el.dataset.n; });
+  document.getElementById('hero-coin').innerHTML = coin({ layout: 'top_bottom', motif: 'laurel' });
+  filter();
+}
+
+function filter() {
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  let any = false;
+  document.querySelectorAll('section.param-block').forEach(sec => {
+    if (sec.style.display === 'none' && sec.dataset.motifsOnly === 'true' && version === 'border') return;
+    let n = 0;
+    sec.querySelectorAll('.param').forEach(p => {
+      const hit = !q || p.dataset.search.includes(q);
+      p.classList.toggle('hidden', !hit);
+      if (hit) n++;
+    });
+    sec.classList.toggle('hidden', n === 0);
+    sec.querySelectorAll('.figure').forEach(f => f.style.display = q ? 'none' : '');
+    if (n) any = true;
+  });
+  document.querySelectorAll('section.static').forEach(s => s.style.display = q ? 'none' : '');
+  document.getElementById('no-results').style.display = any ? 'none' : 'block';
+}
+
+render();
+applyVersion();
+document.getElementById('q').addEventListener('input', filter);
+</script>
+</body>
+</html>

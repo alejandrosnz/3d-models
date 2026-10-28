@@ -9,7 +9,7 @@ Printable 3D models made with OpenSCAD and Fusion. Each folder contains the guid
 
 | Model | Description | Tool | Guide | MakerWorld |
 |---|---|---|---|---|
-| [_template](_template/) | Template for new models | OpenSCAD / Fusion | [Guide](https://alejandrosnz.github.io/3d-models/_template/) | n/a |
+| [parametric_connmemorative_coin](parametric_connmemorative_coin/) | Parametric commemorative coin & coaster generator (up to 4 colors, AMS) | OpenSCAD | [Guide](https://alejandrosnz.github.io/3d-models/parametric_connmemorative_coin/) | n/a |
 
 ## License
 
