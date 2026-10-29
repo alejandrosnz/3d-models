@@ -51,7 +51,7 @@ The border always uses the slots shown above. **Section 3** lets you move any ce
 
 > The colors in the customizer only affect the **preview**. You pick the real filaments in Bambu Studio after you open the 3MF.
 >
-> In the customizer you can type a **color name** (Black, Gold, White, Red, Silver, Copper, Blue, Green, ...) or a **hex code** (`#RRGGBB`); names are converted to hex internally.
+> In the customizer you pick a **color name** from a dropdown (Black, Gold, White, Red, Silver, Copper, Bronze, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown); it is converted to hex internally for the 3MF export.
 
 ---
 

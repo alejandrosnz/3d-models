@@ -122,16 +122,15 @@ guil_inner_circle = true;
 center_margin = 1.0; // [0:0.1:5]
 
 /* [5. Colors (preview only)] */
-// Slot 1: outer rim + center + base. Type a color name (Black, Gold, White, Red,
-// Silver, Copper, Blue, Green, ...) or a hex code (#RRGGBB); names are converted
-// to hex internally.
-color_1 = "Black";
+// Slot 1: outer rim + center + base. Pick a color name from the list; it is
+// converted to hex internally for the 3MF export.
+color_1 = "Black"; // [Black, White, Gold, Red, Silver, Copper, Bronze, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown]
 // Slot 2: ring background
-color_2 = "Gold";
+color_2 = "Gold"; // [Black, White, Gold, Red, Silver, Copper, Bronze, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown]
 // Slot 3: text
-color_3 = "White";
+color_3 = "White"; // [Black, White, Gold, Red, Silver, Copper, Bronze, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown]
 // Slot 4: details (banner, fillets, beads, stars)
-color_4 = "Red";
+color_4 = "Red"; // [Black, White, Gold, Red, Silver, Copper, Bronze, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown]
 
 /* [6. Decorations] */
 // Fillets: thin lines on the inner and outer edge of the ring
