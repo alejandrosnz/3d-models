@@ -50,6 +50,8 @@ The border always uses the slots shown above. **Section 3** lets you move any ce
 - **Red shield with white initials:** set the motif to slot 4.
 
 > The colors in the customizer only affect the **preview**. You pick the real filaments in Bambu Studio after you open the 3MF.
+>
+> In the customizer you can type a **color name** (Black, Gold, White, Red, Silver, Copper, Blue, Green, ...) or a **hex code** (`#RRGGBB`); names are converted to hex internally.
 
 ---
 

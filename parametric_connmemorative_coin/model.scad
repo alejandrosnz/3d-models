@@ -122,14 +122,16 @@ guil_inner_circle = true;
 center_margin = 1.0; // [0:0.1:5]
 
 /* [5. Colors (preview only)] */
-// Slot 1: outer rim + center + base
-color_1 = "#111111";
+// Slot 1: outer rim + center + base. Type a color name (Black, Gold, White, Red,
+// Silver, Copper, Blue, Green, ...) or a hex code (#RRGGBB); names are converted
+// to hex internally.
+color_1 = "Black";
 // Slot 2: ring background
-color_2 = "#D4AF37";
+color_2 = "Gold";
 // Slot 3: text
-color_3 = "#F5F5F5";
+color_3 = "White";
 // Slot 4: details (banner, fillets, beads, stars)
-color_4 = "#B22222";
+color_4 = "Red";
 
 /* [6. Decorations] */
 // Fillets: thin lines on the inner and outer edge of the ring
@@ -212,6 +214,28 @@ circle_fn = 180; // [64:8:360]
 text_fn = 32; // [8:4:96]
 
 /* [Hidden] */
+// Convert a color name (or pass-through hex code) to a hex string.
+// Names are resolved to the palette used by this model; anything starting
+// with "#" (or unknown) is returned unchanged so hex codes keep working.
+function to_hex(c) =
+    len(c) > 0 && c[0] == "#" ? c :
+    c == "Black"   ? "#111111" :
+    c == "White"   ? "#F5F5F5" :
+    c == "Gold"    ? "#D4AF37" :
+    c == "Red"     ? "#B22222" :
+    c == "Silver"  ? "#C0C0C0" :
+    c == "Copper"  ? "#B87333" :
+    c == "Bronze"  ? "#CD7F32" :
+    c == "Blue"    ? "#1E5AA8" :
+    c == "Green"   ? "#2E7D32" :
+    c == "Yellow"  ? "#F2C200" :
+    c == "Orange"  ? "#E67E22" :
+    c == "Purple"  ? "#6A1B9A" :
+    c == "Pink"    ? "#E91E63" :
+    c == "Gray"    ? "#808080" :
+    c == "Grey"    ? "#808080" :
+    c == "Brown"   ? "#5D4037" :
+    c;
 eps = 0.01;
 // Liberation Sans (≈ Arial) metrics in OpenSCAD:
 // cap height ≈ size, and 1 em ≈ size / 0.72
@@ -773,7 +797,7 @@ if (center_motif == "laurel" && lau_in < 2)
     echo("WARNING: little room inside the laurel wreath; reduce the leaf size");
 
 // ---------- Output (one object per color = one part per AMS slot) ----------
-if (export_part == "all" || export_part == "c1") color(color_1) body_c1();
-if (export_part == "all" || export_part == "c2") color(color_2) inlay(2);
-if (export_part == "all" || export_part == "c3") color(color_3) inlay(3);
-if (export_part == "all" || export_part == "c4") color(color_4) inlay(4);
+if (export_part == "all" || export_part == "c1") color(to_hex(color_1)) body_c1();
+if (export_part == "all" || export_part == "c2") color(to_hex(color_2)) inlay(2);
+if (export_part == "all" || export_part == "c3") color(to_hex(color_3)) inlay(3);
+if (export_part == "all" || export_part == "c4") color(to_hex(color_4)) inlay(4);
