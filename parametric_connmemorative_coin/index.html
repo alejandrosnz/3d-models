@@ -201,7 +201,7 @@
         <p>A parametric generator for <strong>commemorative coins</strong> and <strong>coasters</strong> printed in up to <strong>4 colors with the Bambu Lab AMS</strong>. The design is <strong>flat, color only, with no relief</strong>: every color sits flush with the top face.</p>
         <p>This guide explains every parameter in the customizer. Section numbers match what you see in MakerWorld.</p>
         <div class="pill-row">
-          <span class="pill">Ø90 coaster</span><span class="pill">Ø50 / Ø45 coins</span><span class="pill">5 border layouts</span>
+          <span class="pill">Ø90 coaster</span><span class="pill">Ø50 / Ø35 coins</span><span class="pill">5 border layouts</span>
           <span class="pill only-motifs">6 center motifs</span><span class="pill">Double-sided</span><span class="pill">AMS-ready 3MF</span>
         </div>
       </div>
@@ -258,8 +258,8 @@
       <header><h2>Printing tips</h2></header>
       <div class="tips">
         <div class="card"><h3>Colored face up</h3><p>The color is only on the top layers, so filament changes happen only there. Purge waste is much lower than with full-height multicolor.</p></div>
-        <div class="card"><h3>Layer height</h3><p>Use 0.2 mm, or 0.16 mm for small coins. Keep <b>Color depth</b> a multiple of the layer height. The default is 0.6 mm, which is 3 layers.</p></div>
-        <div class="card"><h3>Minimum detail</h3><p>Lines of 0.8 mm (2 lines with a 0.4 mm nozzle) print reliably. Text on the Ø45 coin is about 2.7 mm tall, so use bold fonts.</p></div>
+        <div class="card"><h3>Layer height</h3><p>Use 0.2 mm, or 0.16 mm for small coins. Keep <b>Color depth</b> a multiple of the layer height. The default is 0.6 mm, which is 3 layers. For the Ø35 coin, a 0.2 mm nozzle is recommended for better detail.</p></div>
+        <div class="card"><h3>Minimum detail</h3><p>Lines of 0.8 mm (2 lines with a 0.4 mm nozzle) print reliably. Text on the Ø35 coin is about 1.7 mm tall, so use bold fonts and, for this size, a 0.2 mm nozzle.</p></div>
         <div class="card"><h3>Ironing</h3><p>Ironing the top surface gives a smooth, shiny coin finish.</p></div>
         <div class="card"><h3>Double-sided</h3><p>The first layer becomes the back face, so keep the bed clean. A smooth PEI plate gives a glossy back.</p></div>
         <div class="card only-motifs"><h3>Delicate motifs</h3><p>Guilloché and many-ray sunbursts are the most delicate motifs. On small coins, keep the counts low and check the slicer preview.</p></div>
@@ -566,7 +566,7 @@ function section(double) {
 
 /* ---------- Small standalone figures ---------- */
 function sizesFig() {
-  const items = [[90, 'Coaster', 'Ø90 × 2 mm'], [50, 'Coin', 'Ø50 × 3 mm'], [45, 'Coin', 'Ø45 × 3 mm']];
+  const items = [[90, 'Coaster', 'Ø90 × 2 mm'], [50, 'Coin', 'Ø50 × 3 mm'], [35, 'Coin', 'Ø35 × 3 mm']];
   let x = 0, s = '';
   for (const [d, a, b] of items) {
     const r = d / 2;
@@ -602,7 +602,7 @@ const SECTIONS = [
       ].map(([l, c, s]) => [coin({ layout: l }), c, s])) },
     ],
     params: [
-      ['Item type', 'size_preset', 'Coaster Ø90 × 2 mm', 'Coaster Ø90 · Coin Ø50 · Coin Ø45 · Custom',
+      ['Item type', 'size_preset', 'Coaster Ø90 × 2 mm', 'Coaster Ø90 · Coin Ø50 · Coin Ø35 · Custom',
         '<p>Sets the diameter, thickness, outer rim width and ring width in one go. Choose <b>Custom</b> to use your own values from <a href="#custom">Custom dimensions</a>.</p>'],
       ['Text layout', 'layout', 'Top and bottom text', '5 layouts',
         '<p>How text and decorations are arranged on the ring. See the previews above.</p><p class="tip">Each layout only uses the texts it needs. For example, the banner layouts read <i>Banner text</i>, and <i>360°</i> reads <i>360° text</i>.</p>'],
@@ -640,7 +640,7 @@ const SECTIONS = [
       ['Main center text', 'center_text', '25', 'text', '<p>The big text: a number, a year or initials. It is sized automatically to fit the free space of each motif. 1 to 4 characters look best.</p>'],
       ['Small line', 'center_subtext', 'YEARS', 'text (empty = none)', '<p>Optional smaller text under the main one. With <i>Big number</i>, a short divider bar is drawn between them.</p>'],
       ['Motif size', 'center_motif_scale', '1.0', '0.5 – 1', '<p>Scales the motif inside the free center. Lower it to leave more black around the motif, or to keep it clear of a banner.</p>'],
-      ['Center text size', 'center_text_scale', '1.0', '0.3 – 1.5', '<p>Scales the center text relative to its automatic fit.</p>'],
+      ['Center text size', 'center_text_scale', '1.0', '0.3 – 2.5', '<p>Scales the center text relative to its automatic fit. Values above 1.5 may overflow the available center space.</p>'],
       ['Center frame', 'center_frame', 'off', 'on / off', '<p>Adds a thin circle around the center, in the accent slot.</p>'],
       ['Motif slot', 'center_motif_slot', '2', '1 – 4', '<p>Slot for the motif shapes: leaves, rays, star, shield, guilloché lines.</p>'],
       ['Accent slot', 'center_accent_slot', '4', '1 – 4', '<p>Slot for the accents: two-tone halves, shield border, frame, divider bar.</p>'],

@@ -27,7 +27,7 @@
 
 /* [1. Design] */
 // Item type (sets diameter, thickness and widths). "Custom" uses section 9
-size_preset = "coaster90"; // [coaster90:Coaster Ø90 x 2 mm, coin50:Coin Ø50 x 3 mm, coin45:Coin Ø45 x 3 mm, custom:Custom]
+size_preset = "coaster90"; // [coaster90:Coaster Ø90 x 2 mm, coin50:Coin Ø50 x 3 mm, coin35:Coin Ø35 x 3 mm, custom:Custom]
 // Text layout on the ring
 layout = "top_bottom"; // [top_bottom:Top and bottom text, full360:360° text, top_stars:Top text + bottom stars, banner:Bottom banner + stars, banner_top:Bottom banner + top text]
 // Double-sided: repeat the border on the bottom face (mirrored so it reads correctly)
@@ -57,7 +57,7 @@ center_subtext = "YEARS";
 // Motif size (fraction of the free center)
 center_motif_scale = 1.0; // [0.5:0.01:1]
 // Center text size (relative to automatic fit)
-center_text_scale = 1.0; // [0.3:0.05:1.5]
+center_text_scale = 1.0; // [0.3:0.05:2.5]
 // Thin frame circle around the center (accent color)
 center_frame = false;
 // Slot for the motif shapes
@@ -221,8 +221,8 @@ EM = 1 / 0.72;
 // id, diameter, thickness, outer rim, ring
 PRESETS = [
     ["coaster90", 90, 2, 3,   12],
-    ["coin50",    50, 3, 2,   8],
-    ["coin45",    45, 3, 1.8, 7.5]
+    ["coin50",    50, 3, 1.5, 8],
+    ["coin35",    35, 3, 1.0, 6.0]
 ];
 CUSTOM = ["custom", custom_diameter, custom_thickness, custom_rim_width, custom_band_width];
 function preset() = let(p = [for (q = PRESETS) if (q[0] == size_preset) q]) len(p) > 0 ? p[0] : CUSTOM;

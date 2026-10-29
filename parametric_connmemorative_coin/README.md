@@ -21,7 +21,7 @@ The design is **flat, color only, with no relief**. Every color sits flush with 
 - **3 ready-made sizes**, plus fully custom dimensions:
   - Coaster: Ø90 × 2 mm
   - Coin: Ø50 × 3 mm
-  - Coin: Ø45 × 3 mm
+  - Coin: Ø35 × 3 mm
 - **5 classic border layouts:**
   - Top and bottom text
   - 360° text all around the ring
@@ -173,9 +173,9 @@ The center diameter is `diameter − 2 × (rim + ring)`.
 
 - **Print with the colored face up.** The color is only on the top layers, so filament changes happen only there and **purge waste is much lower** than with full-height multicolor. In double-sided mode, changes happen on the bottom layers too.
 - **Double-sided coins:** a clean first layer is essential, since it becomes the back face. A smooth PEI plate gives a glossy back.
-- **Layer height:** 0.2 mm (or 0.16 mm for small coins). Make the color depth a multiple of it.
-- **Minimum details:** keep lines at 0.8 mm or more (2 lines with a 0.4 mm nozzle).
-  - On the **Ø45 coin**, prefer simple motifs (number, shield, 5-point star) and few laurel leaves.
+- **Layer height:** 0.2 mm (or 0.16 mm for small coins). Make the color depth a multiple of it. For the Ø35 coin, a 0.2 mm nozzle is recommended for better detail.
+- **Minimum details:** keep lines at 0.8 mm or more (2 lines with a 0.4 mm nozzle). For the Ø35 coin, a 0.2 mm nozzle is recommended for better detail.
+  - On the **Ø35 coin**, prefer simple motifs (number, shield, 5-point star) and few laurel leaves.
   - Two-tone sunbursts with many rays get very thin near the disc.
   - **Guilloché** is the most delicate motif. Lines must be at least 0.8 mm wide with gaps of at least about 0.6 mm between them, or they merge into a solid area.
     - On coins, start with 1 or 2 rings, 3 or 4 copies and 8 to 12 waves.
