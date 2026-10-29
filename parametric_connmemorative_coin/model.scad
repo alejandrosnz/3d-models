@@ -124,13 +124,13 @@ center_margin = 1.0; // [0:0.1:5]
 /* [5. Colors (preview only)] */
 // Slot 1: outer rim + center + base. Pick a color name from the list; it is
 // converted to hex internally for the 3MF export.
-color_1 = "Black"; // [Black, White, Gold, Red, Silver, Copper, Bronze, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown]
+color_1 = "Black"; // [Black, White, Gold, Silver, Red, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown, Copper, Bronze, Navy, Teal, Cyan, Magenta, Lime, Maroon, Olive, Coral, Indigo, Turquoise]
 // Slot 2: ring background
-color_2 = "Gold"; // [Black, White, Gold, Red, Silver, Copper, Bronze, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown]
+color_2 = "Gold"; // [Black, White, Gold, Silver, Red, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown, Copper, Bronze, Navy, Teal, Cyan, Magenta, Lime, Maroon, Olive, Coral, Indigo, Turquoise]
 // Slot 3: text
-color_3 = "White"; // [Black, White, Gold, Red, Silver, Copper, Bronze, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown]
+color_3 = "White"; // [Black, White, Gold, Silver, Red, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown, Copper, Bronze, Navy, Teal, Cyan, Magenta, Lime, Maroon, Olive, Coral, Indigo, Turquoise]
 // Slot 4: details (banner, fillets, beads, stars)
-color_4 = "Red"; // [Black, White, Gold, Red, Silver, Copper, Bronze, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown]
+color_4 = "Red"; // [Black, White, Gold, Silver, Red, Blue, Green, Yellow, Orange, Purple, Pink, Gray, Brown, Copper, Bronze, Navy, Teal, Cyan, Magenta, Lime, Maroon, Olive, Coral, Indigo, Turquoise]
 
 /* [6. Decorations] */
 // Fillets: thin lines on the inner and outer edge of the ring
@@ -218,22 +218,32 @@ text_fn = 32; // [8:4:96]
 // with "#" (or unknown) is returned unchanged so hex codes keep working.
 function to_hex(c) =
     len(c) > 0 && c[0] == "#" ? c :
-    c == "Black"   ? "#111111" :
-    c == "White"   ? "#F5F5F5" :
-    c == "Gold"    ? "#D4AF37" :
-    c == "Red"     ? "#B22222" :
-    c == "Silver"  ? "#C0C0C0" :
-    c == "Copper"  ? "#B87333" :
-    c == "Bronze"  ? "#CD7F32" :
-    c == "Blue"    ? "#1E5AA8" :
-    c == "Green"   ? "#2E7D32" :
-    c == "Yellow"  ? "#F2C200" :
-    c == "Orange"  ? "#E67E22" :
-    c == "Purple"  ? "#6A1B9A" :
-    c == "Pink"    ? "#E91E63" :
-    c == "Gray"    ? "#808080" :
-    c == "Grey"    ? "#808080" :
-    c == "Brown"   ? "#5D4037" :
+    c == "Black"     ? "#111111" :
+    c == "White"     ? "#F5F5F5" :
+    c == "Gold"      ? "#D4AF37" :
+    c == "Silver"    ? "#C0C0C0" :
+    c == "Red"       ? "#B22222" :
+    c == "Blue"      ? "#1E5AA8" :
+    c == "Green"     ? "#2E7D32" :
+    c == "Yellow"    ? "#F2C200" :
+    c == "Orange"    ? "#E67E22" :
+    c == "Purple"    ? "#6A1B9A" :
+    c == "Pink"      ? "#E91E63" :
+    c == "Gray"      ? "#808080" :
+    c == "Grey"      ? "#808080" :
+    c == "Brown"     ? "#5D4037" :
+    c == "Copper"    ? "#B87333" :
+    c == "Bronze"    ? "#CD7F32" :
+    c == "Navy"      ? "#1F3864" :
+    c == "Teal"      ? "#008080" :
+    c == "Cyan"      ? "#00BCD4" :
+    c == "Magenta"   ? "#C2185B" :
+    c == "Lime"      ? "#7CB342" :
+    c == "Maroon"    ? "#800000" :
+    c == "Olive"     ? "#556B2F" :
+    c == "Coral"     ? "#FF7F50" :
+    c == "Indigo"    ? "#3F51B5" :
+    c == "Turquoise" ? "#40E0D0" :
     c;
 eps = 0.01;
 // Liberation Sans (≈ Arial) metrics in OpenSCAD:
