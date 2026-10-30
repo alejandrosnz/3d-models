@@ -13,6 +13,7 @@ Guidelines for adding and publishing models in this repository.
 ├── _template/          copy this folder for each new model
 │   ├── index.html      guide
 │   ├── README.md
+│   ├── MAKERWORLD.MD   MakerWorld listing description + metadata
 │   ├── model.scad      and/or model.f3d, .stl, .3mf
 │   └── img/
 └── model-name/
@@ -22,7 +23,17 @@ Guidelines for adding and publishing models in this repository.
 
 1. Copy `_template/` and name the copy after the model, lowercase with hyphens.
 2. Edit `index.html` and `README.md`, and put your files in the folder.
-3. Add the model to the table in the root `README.md` and to the list in the root `index.html`.
+3. Copy `_template/MAKERWORLD.MD` to the new folder and fill in its metadata and listing description.
+4. Add the model to the table in the root `README.md` and to the list in the root `index.html`.
+
+## MakerWorld listing (MAKERWORLD.MD)
+
+- Each model folder contains a `MAKERWORLD.MD` with the listing description published on MakerWorld.
+- It starts with a YAML frontmatter block (delimited by `---`) with metadata, then the description body (Markdown).
+- Frontmatter fields: `title`, `slug`, `makerworld_url`, `author`, `license`, `version`, `updated`, `tags`.
+- `makerworld_url` is the public MakerWorld model URL (fill it in once the model is published; use `TODO` as placeholder until then).
+- Copy `_template/MAKERWORLD.MD` when adding a new model and fill in the metadata and description.
+- Keep the body in sync with the actual MakerWorld listing.
 
 ## Images
 
