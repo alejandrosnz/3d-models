@@ -51,6 +51,7 @@ Colors in the customizer are preview only — pick real filaments in Bambu Studi
 
 - Print with the colored face down (better results and fewer waste).
 - Use a 0.2 mm nozzle on the Ø35 coin.
+- Color depth: 0.6 mm by default (3 layers at 0.2 mm); with 0.12 mm layers use 0.36 mm (3 layers).
 
 ## ❓ FAQ
 

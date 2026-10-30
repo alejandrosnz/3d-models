@@ -166,7 +166,7 @@ The center diameter is `diameter − 2 × (rim + ring)`.
 - Set either one to `0` for a sharp edge.
 
 ### 12. Printing / AMS
-- **Color depth:** how deep the colored inlay goes. The default is 0.6 mm, which is 3 layers at 0.2 mm. Keep it a multiple of your layer height.
+- **Color depth:** how deep the colored inlay goes. The default is 0.6 mm, which is 3 layers at 0.2 mm. Keep it a multiple of your layer height (with 0.12 mm layers, use 0.36 mm).
 - **Export:** *All* generates the multicolor model. *Color N only* exports a single color as a separate part.
 - **Resolution:** smoothness of circles and letters. Higher values make generation slower.
 
@@ -176,7 +176,7 @@ The center diameter is `diameter − 2 × (rim + ring)`.
 
 - **Print with the colored face down.** The color is only on the first layers, so filament changes happen only there and **purge waste is much lower** than with full-height multicolor. The colors also print directly on the plate for a smoother finish. In double-sided mode, changes happen on both faces.
 - **Double-sided coins:** a clean first layer is essential, since it becomes the back face. A smooth PEI plate gives a glossy back.
-- **Layer height:** 0.2 mm (or 0.16 mm for small coins). Make the color depth a multiple of it. For the Ø35 coin, use only a 0.2 mm nozzle for better detail.
+- **Layer height:** 0.2 mm (or 0.16 mm for small coins), or 0.12 mm when using a 0.2 mm nozzle. Make the color depth a multiple of it. For the Ø35 coin, use only a 0.2 mm nozzle for better detail.
 - **Minimum details:** keep lines at 0.8 mm or more (2 lines with a 0.4 mm nozzle). For the Ø35 coin, use only a 0.2 mm nozzle for better detail.
   - On the **Ø35 coin**, prefer simple motifs (number, shield, 5-point star) and few laurel leaves.
   - Two-tone sunbursts with many rays get very thin near the disc.
