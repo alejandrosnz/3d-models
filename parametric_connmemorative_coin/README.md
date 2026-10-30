@@ -92,6 +92,7 @@ Sections are ordered from most to least important. Most people only need section
 - **Main center text:** a number, a year or initials. It is sized automatically to fit the motif, and short texts (1 to 4 characters) look best. Leave it empty for a motif with no text.
 - **Small line:** optional smaller text under the main one (`YEARS`, `EST.`, `CHAMPION`…). With *Big number*, a short divider bar is drawn between the two lines.
 - **Motif size / Center text size:** scale the motif and the text.
+- **Small line size:** scales the small line under the main text independently (new parameter `center_subtext_scale`).
 - **Center frame:** a thin circle around the center, in the accent color.
 - **Slots:** choose the slot (1 to 4) for the motif, accents, text and background. If an element shares a slot with whatever is under it, it becomes invisible, and the console shows a warning.
 - **Back face** (double-sided only):
@@ -175,8 +176,8 @@ The center diameter is `diameter − 2 × (rim + ring)`.
 
 - **Print with the colored face up.** The color is only on the top layers, so filament changes happen only there and **purge waste is much lower** than with full-height multicolor. In double-sided mode, changes happen on the bottom layers too.
 - **Double-sided coins:** a clean first layer is essential, since it becomes the back face. A smooth PEI plate gives a glossy back.
-- **Layer height:** 0.2 mm (or 0.16 mm for small coins). Make the color depth a multiple of it. For the Ø35 coin, a 0.2 mm nozzle is recommended for better detail.
-- **Minimum details:** keep lines at 0.8 mm or more (2 lines with a 0.4 mm nozzle). For the Ø35 coin, a 0.2 mm nozzle is recommended for better detail.
+- **Layer height:** 0.2 mm (or 0.16 mm for small coins). Make the color depth a multiple of it. For the Ø35 coin, use only a 0.2 mm nozzle for better detail.
+- **Minimum details:** keep lines at 0.8 mm or more (2 lines with a 0.4 mm nozzle). For the Ø35 coin, use only a 0.2 mm nozzle for better detail.
   - On the **Ø35 coin**, prefer simple motifs (number, shield, 5-point star) and few laurel leaves.
   - Two-tone sunbursts with many rays get very thin near the disc.
   - **Guilloché** is the most delicate motif. Lines must be at least 0.8 mm wide with gaps of at least about 0.6 mm between them, or they merge into a solid area.

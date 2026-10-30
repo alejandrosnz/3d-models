@@ -58,6 +58,8 @@ center_subtext = "YEARS";
 center_motif_scale = 1.0; // [0.5:0.01:1]
 // Center text size (relative to automatic fit)
 center_text_scale = 1.0; // [0.3:0.05:2.5]
+// Small line size (relative to automatic fit), independent of the main text
+center_subtext_scale = 1.0; // [0.3:0.05:2.5]
 // Thin frame circle around the center (accent color)
 center_frame = false;
 // Slot for the motif shapes
@@ -138,7 +140,9 @@ show_fillets = true;
 // Beads: ring of dots next to the outer rim
 show_beads = false;
 // Separators between texts (and between repetitions in 360° layout)
-separator_style = "star"; // [star:Star, dot:Dot, none:None]
+// "auto" picks a circle (dot) on the Ø50 coin, where the star is too small to print,
+// and a star everywhere else.
+separator_style = "auto"; // [auto:Automatic (circle on 50mm coin / star otherwise), star:Star, dot:Dot (circle), none:None]
 // Arc of stars on the free part of the ring ("+ stars" layouts)
 show_star_arc = true;
 // Number of stars in the arc (0 = automatic)
@@ -274,6 +278,12 @@ CH_BOT = max(0, min(bottom_chamfer, double_sided ? RIM_W : T, T / 2 - 0.1));
 
 is_banner = layout == "banner" || layout == "banner_top";
 
+// Effective separator style: "auto" resolves to a circle (dot) on the Ø50 coin
+// (the star separator is too small to print there) and to a star everywhere else.
+separator_eff = separator_style == "auto"
+    ? (size_preset == "coin50" ? "dot" : "star")
+    : separator_style;
+
 // ---------- Radial zones (outside to inside) ----------
 // rim | gap | beads | gap | fillet | TEXT ZONE | fillet | gap | center
 R         = D / 2;
@@ -353,8 +363,8 @@ module star2d(d, points = 5, inner = 0.45) {
 }
 
 module separator2d(d) {
-    if (separator_style == "star") star2d(d);
-    else if (separator_style == "dot") circle(d = d * 0.6, $fn = 32);
+    if (separator_eff == "star") star2d(d);
+    else if (separator_eff == "dot") circle(d = d * 0.6, $fn = 32);
 }
 
 // Places children on the ring at θ degrees (from the top, clockwise), facing outwards
@@ -433,7 +443,7 @@ top_span    = arc_deg(top_text, r_txt, txt_size);
 bottom_span = arc_deg(bottom_text, r_txt, txt_size);
 
 seg_360     = 360 / repeat_360;
-gap_360     = len2deg(separator_style == "none" ? cap : sep_d * 2, r_txt);
+gap_360     = len2deg(separator_eff == "none" ? cap : sep_d * 2, r_txt);
 avail_360   = (seg_360 - gap_360) * PI / 180 * r_txt;
 len_360     = text_len(text_360, txt_size);
 stretch_360 = len_360 <= 0 ? 1 : (fit_360 ? avail_360 / len_360 : min(1, avail_360 / len_360));
@@ -465,7 +475,7 @@ module details2d() {
         for (i = [0:1:n - 1]) on_ring(i * 360 / n, r_bead) circle(d = bead_diameter, $fn = 16);
     }
     // Separators
-    if (separator_style != "none") {
+    if (separator_eff != "none") {
         if (layout == "top_bottom") {
             t = (top_span / 2 + 180 - bottom_span / 2) / 2;
             on_ring(t, r_txt) separator2d(sep_d);
@@ -519,7 +529,7 @@ function label_sizes(t, sub, ra) =
     let(has_t = len(t) > 0,
         has_s = len(sub) > 0,
         sm = has_t ? min(ra * (has_s ? 0.7 : 0.85), ra * 1.6 / max(text_len(t, 1), eps)) * center_text_scale : 0,
-        hs = has_s ? min(has_t ? sm * 0.35 : ra * 0.4 * center_text_scale, ra * 1.3 / max(text_len(sub, 1), eps)) : 0,
+        hs = has_s ? min(has_t ? sm * 0.45 : ra * 0.5 * center_text_scale, ra * 1.3 / max(text_len(sub, 1), eps)) * center_subtext_scale : 0,
         g  = (has_t && has_s) ? sm * 0.3 : 0)
     [sm, hs, g, sm + g + hs];
 
