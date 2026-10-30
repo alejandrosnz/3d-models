@@ -6,7 +6,7 @@ author: alejandrosnz
 license: "CC BY-NC-SA 4.0"
 version: "1.0"
 updated: "YYYY-MM-DD"
-tags: []
+tags: [] # use 15-20 relevant tags (lowercase, hyphenated)
 ---
 
 # Model Title

@@ -174,7 +174,7 @@ The center diameter is `diameter − 2 × (rim + ring)`.
 
 ## 🖨️ Printing tips
 
-- **Print with the colored face up.** The color is only on the top layers, so filament changes happen only there and **purge waste is much lower** than with full-height multicolor. In double-sided mode, changes happen on the bottom layers too.
+- **Print with the colored face down.** The color is only on the first layers, so filament changes happen only there and **purge waste is much lower** than with full-height multicolor. The colors also print directly on the plate for a smoother finish. In double-sided mode, changes happen on both faces.
 - **Double-sided coins:** a clean first layer is essential, since it becomes the back face. A smooth PEI plate gives a glossy back.
 - **Layer height:** 0.2 mm (or 0.16 mm for small coins). Make the color depth a multiple of it. For the Ø35 coin, use only a 0.2 mm nozzle for better detail.
 - **Minimum details:** keep lines at 0.8 mm or more (2 lines with a 0.4 mm nozzle). For the Ø35 coin, use only a 0.2 mm nozzle for better detail.

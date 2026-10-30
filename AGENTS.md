@@ -31,6 +31,7 @@ Guidelines for adding and publishing models in this repository.
 - Each model folder contains a `MAKERWORLD.MD` with the listing description published on MakerWorld.
 - It starts with a YAML frontmatter block (delimited by `---`) with metadata, then the description body (Markdown).
 - Frontmatter fields: `title`, `slug`, `makerworld_url`, `author`, `license`, `version`, `updated`, `tags`.
+- `tags`: always include 15 to 20 relevant tags (lowercase; hyphenate multi-word tags).
 - `makerworld_url` is the public MakerWorld model URL (fill it in once the model is published; use `TODO` as placeholder until then).
 - Copy `_template/MAKERWORLD.MD` when adding a new model and fill in the metadata and description.
 - Keep the body in sync with the actual MakerWorld listing.
